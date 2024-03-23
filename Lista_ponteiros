@@ -9,3 +9,4 @@ QUESTÃO 1:
   P = &i;  
   NO CÓDIGO, É ATRIBUIDO A P O VALOR DO ENDEREÇO DE I. LOGO, ESSA EXPRESSÃO RETORNARÁ O VALOR 1, QUE EM C REPRESENTA UMA AFIRMAÇÃO VERDADEIRA. 
 ---------------------------
+......................
