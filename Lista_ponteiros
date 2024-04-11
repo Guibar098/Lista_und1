@@ -318,7 +318,59 @@ QUESTÃO 18:
 
 ---------------------------
 QUESTÃO 19:
+--- O PROGRAMA CORRESPONDE AO PEDIDO NA QUESTÃO, BASTA APÓS A COMPILAÇÃO O USUÁRIO INSERIR OS QUATRO ELEMENTOS DE CADA VETOR, QUE O PROGRAMA ENTREGA A SOMA. 
+#include <stdio.h>
+#include <stdlib.h>
 
+// Função para somar elementos correspondentes de dois vetores e armazenar o resultado em um terceiro vetor.
+void soma_vetores(int *vetor1, int *vetor2, int *vetor_soma, int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        vetor_soma[i] = vetor1[i] + vetor2[i];
+    }
+}
+
+int main() {
+    int tamanho = 4;//Declaração do tamanho dos vetores.
+
+    // Aloca memória para os vetores
+    int *vetor1 = (int *)malloc(tamanho * sizeof(int));
+    int *vetor2 = (int *)malloc(tamanho * sizeof(int));
+    int *vetor_soma = (int *)malloc(tamanho * sizeof(int));
+
+    // Verifica se a alocação foi bem-sucedida
+    if (vetor1 == NULL || vetor2 == NULL || vetor_soma == NULL) {
+        printf("Erro: Falha na alocação de memória.\n");
+        return 1;
+    }
+
+    // Preenche os vetores com valores declarados pelo usuário.
+    printf("Digite os elementos do primeiro vetor:\n");
+    for (int i = 0; i < tamanho; i++) {
+        scanf("%d", &vetor1[i]);
+    }
+    
+    printf("Digite os elementos do segundo vetor:\n");
+    for (int i = 0; i < tamanho; i++) {
+        scanf("%d", &vetor2[i]);
+    }
+
+    // Chama a função para realizar a soma dos vetores
+    soma_vetores(vetor1, vetor2, vetor_soma, tamanho);
+
+    // Imprime o vetor resultante da soma.
+    printf("Vetor resultante da soma:\n");
+    for (int i = 0; i < tamanho; i++) {
+        printf("%d ", vetor_soma[i]);
+    }
+    printf("\n");
+
+    // Libera a memória alocada
+    free(vetor1);
+    free(vetor2);
+    free(vetor_soma);
+
+    return 0;
+}
 ---------------------------
 QUESTÃO 20:
 
