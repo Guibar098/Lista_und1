@@ -170,7 +170,29 @@ int main() {
 }
 
 --- NESSE PROGRAMA QUE MANIPULA MATRIZES É ALOCADO 40 BYTES PARA AS LINHAS E 40 BYTES PARA AS COLUNAS, NO ENTANTO NÃO OCORRE O DESALOCAMENTO DOS BYTES PARA AS LINHAS E COLUNAS DEPOIS DO USO.
+---------------------------
+QUESTÃO 14:
+  OS PONTEIROS PARA FUNÇÕES DÃO ATRIBUIÇÕES QUE FACILITAM O MODO DA EXECUÇÃO DO CÓDIGO, AS FUNÇÕES SÃO DESCRITAS EM OUTRAS PARTES DO CÓDIGO, NO MOMENTO DE UTILIZAÇÃO O PONTEIRO FAZ O TRABALHO DE APENAS APONTAR PARA O QUE A FUNÇÃO DESCREVE, FACILITANDO E DEIXANDO O CÓDIGO MAIS SUTIL.
 
+#include <stdio.h> //blibioteca padrão de entrada e saída.
+
+  int funcao_soma(int x, int y){
+    return x + y;
+  }//função de atribuição dos valores de x e y, e retorna com a   soma.
+
+  int main() {
+  int x, y; // decalração de variáveis.
+  printf("digite x e y: "); //impressão na tela informando para declarar o valor destinado a x e y
+  scanf("%d %d", &x, &y); //leitura dos valores de x e y.
+  
+  int  (*ptr)(int, int); //declaração de ponteiro para função.
+
+  ptr = funcao_soma; //atribuição do ponteiro para função.
+  
+  printf("soma: %d", ptr(x, y)); //impressão na tela do resultado da função.
+
+  return 0; //retorno da função ao zero. 
+  }
 ---------------------------
 QUESTÃO 21:
   NO TRECHO DE CÓDIGO DA ALTERNATIVA C, OCORRE A ALOCAÇÃO DE 50 BYTES E CASO O NÚMERO DE LINHAS DO ARRAY DATA FOR MAIOR QUE A QUANTIDADE ARMAZENADA O PROGRAMA RETORNA -1 E VOLTA PARA A FUNÇÃO PRINCIPAL SEM DESALOCAR OS 50 BYTES.
