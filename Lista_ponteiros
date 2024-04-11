@@ -172,7 +172,7 @@ int main() {
 --- NESSE PROGRAMA QUE MANIPULA MATRIZES É ALOCADO 40 BYTES PARA AS LINHAS E 40 BYTES PARA AS COLUNAS, NO ENTANTO NÃO OCORRE O DESALOCAMENTO DOS BYTES PARA AS LINHAS E COLUNAS DEPOIS DO USO.
 ---------------------------
 QUESTÃO 14:
-  OS PONTEIROS PARA FUNÇÕES DÃO ATRIBUIÇÕES QUE FACILITAM O MODO DA EXECUÇÃO DO CÓDIGO, AS FUNÇÕES SÃO DESCRITAS EM OUTRAS PARTES DO CÓDIGO, NO MOMENTO DE UTILIZAÇÃO O PONTEIRO FAZ O TRABALHO DE APENAS APONTAR PARA O QUE A FUNÇÃO DESCREVE, FACILITANDO E DEIXANDO O CÓDIGO MAIS SUTIL.
+  OS PONTEIROS PARA FUNÇÕES SÃO ATRIBUIÇÕES QUE FACILITAM NA CRIAÇÃO DO CÓDIGO, AS FUNÇÕES SÃO DESCRITAS EM OUTRAS PARTES DO CÓDIGO, NO MOMENTO DE UTILIZAÇÃO O PONTEIRO FAZ O TRABALHO DE APENAS APONTAR PARA O QUE A FUNÇÃO DESCREVE, FACILITANDO E DEIXANDO O CÓDIGO MAIS SUTIL.
 
 #include <stdio.h> //blibioteca padrão de entrada e saída.
 
@@ -193,6 +193,86 @@ QUESTÃO 14:
 
   return 0; //retorno da função ao zero. 
   }
+--- NESSE PROGRAMA O USUÁRIO INFORMA O VALOR DE X E DE Y, E O PROGRAMA REALIZA E APRESENTA A SOMA DESSES DOIS NUMEROS.
+---------------------------
+QUESTÃO 15:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// Função para trocar dois valores 
+void trocar(float *a, float *b) {
+    float temp = *a; // Armazena o valor de 'a' em 'temp'
+    *a = *b; // Atribui o valor de 'b' a 'a'
+    *b = temp; // Atribui o valor de 'temp' a 'b'
+}
+
+// Função para ordenar os valores em ordem crescente usando bubble sort
+void ordenar_crescente(float *valores, int n) {
+    int trocado;
+    do {
+        trocado = 0; 
+        for (int i = 0; i < n - 1; i++) { // Loop externo para percorrer o vetor.
+            if (valores[i] > valores[i + 1]) {
+                trocar(&valores[i], &valores[i + 1]);
+                trocado = 1;
+            }
+        }
+    } while (trocado); // Continua enquanto houver trocas
+}
+
+int main() {
+    int n;
+
+    // Solicita ao usuário o número de valores a serem lidos.
+    printf("Digite o número de valores a serem lidos: ");
+    scanf("%d", &n);
+
+    // Aloca memória para armazenar os valores
+    float *valores = (float *)malloc(n * sizeof(float));
+
+    // Verifica se a alocação foi bem-sucedida
+    if (valores == NULL) {
+        printf("Erro: Falha na alocação de memória.\n");
+        return 1;
+    }
+
+    // Lê os valores que o usuário declara.
+    printf("Digite %d valores float:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%f", &valores[i]);
+    }
+
+    // Ordena os valores em ordem crescente
+    ordenar_crescente(valores, n);
+
+    // Apresenta os valores ordenados em ordem crescente.
+    printf("Valores em ordem crescente:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%.2f ", valores[i]);
+    }
+    printf("\n");
+
+    // Libera a memória alocada para não haver memory leak.
+    free(valores);
+
+    return 0;
+}
+---------------------------
+QUESTÃO 16:
+
+---------------------------
+QUESTÃO 17:
+
+---------------------------
+QUESTÃO 18:
+
+---------------------------
+QUESTÃO 19:
+
+---------------------------
+QUESTÃO 20:
+
 ---------------------------
 QUESTÃO 21:
   NO TRECHO DE CÓDIGO DA ALTERNATIVA C, OCORRE A ALOCAÇÃO DE 50 BYTES E CASO O NÚMERO DE LINHAS DO ARRAY DATA FOR MAIOR QUE A QUANTIDADE ARMAZENADA O PROGRAMA RETORNA -1 E VOLTA PARA A FUNÇÃO PRINCIPAL SEM DESALOCAR OS 50 BYTES.
