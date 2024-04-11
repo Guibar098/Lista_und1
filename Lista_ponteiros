@@ -260,7 +260,56 @@ int main() {
 }
 ---------------------------
 QUESTÃO 16:
+--- O PROGRAMA A SEGUIR É UMA REPLICA DO PROGRAMA DA QUESTÃO ANTERIOR, A DIFERENÇA APRESENTA NO TIPO DE FUNÇÃO UTILIZADA PARA A ORDENAÇÃO DOS NÚMEROS. 
+#include <stdio.h>
+#include <stdlib.h>
 
+// Função de comparação para qsort
+int comparar(const void *a, const void *b) {
+    float *valor1 = (float *)a; // Converte o ponteiro a para float
+    float *valor2 = (float *)b; // Converte o ponteiro b para float
+    if (*valor1 < *valor2) return -1; // Retorna -1 se o valor1 for menor que o valor2
+    else if (*valor1 > *valor2) return 1; // Retorna 1 se o valor1 for maior que o valor2
+    else return 0; // Retorna 0 se os valores forem iguais.
+}
+
+int main() {
+    int n;
+
+    // Solicita ao usuário o número de valores a serem lidos
+    printf("Digite o número de valores a serem lidos: ");
+    scanf("%d", &n);
+
+    // Aloca memória para armazenar os valores
+    float *valores = (float *)malloc(n * sizeof(float));
+
+    // Verifica se a alocação foi bem-sucedida
+    if (valores == NULL) {
+        printf("Erro: Falha na alocação de memória.\n");
+        return 1;
+    }
+
+    // Lê os valores que usuário declara.
+    printf("Digite %d valores float:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%f", &valores[i]);
+    }
+
+    // Usa a função qsort para ordenar os valores em ordem crescente
+    qsort(valores, n, sizeof(float), comparar);
+
+    // Apresenta os valores ordenados em ordem crescente.
+    printf("Valores em ordem crescente:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%.2f ", valores[i]);
+    }
+    printf("\n");
+
+    // Libera a memória alocada
+    free(valores);
+
+    return 0;
+}
 ---------------------------
 QUESTÃO 17:
 
