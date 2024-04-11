@@ -312,7 +312,86 @@ int main() {
 }
 ---------------------------
 QUESTÃO 17:
+---NESTE PROGRAMA O USUÁRIO DECLARA O NÚMERO DE VALORES, DECLARA OS RESPECTIVOS, PODE ESTAR ESCOLHENDO COMO O PROGRAMA DEVE ORDENAR, CRESCENTE OU DECRESCENTE.
+#include <stdio.h>
+#include <stdlib.h>
 
+// Protótipo da função de comparação
+typedef int (*CompararFunc)(const void *, const void *);
+
+// Função de comparação para ordenação crescente
+int comparar_crescente(const void *a, const void *b) {
+    return (*(int *)a - *(int *)b);
+}
+
+// Função de comparação para ordenação decrescente
+int comparar_decrescente(const void *a, const void *b) {
+    return (*(int *)b - *(int *)a);
+}
+
+// Função de ordenação personalizada
+void ordenar(int *array, int tamanho, CompararFunc comparar) {
+    qsort(array, tamanho, sizeof(int), comparar);
+}
+
+int main() {
+    int n;
+
+    // Solicita ao usuário o número de valores a serem lidos
+    printf("Digite o número de valores a serem lidos: ");
+    scanf("%d", &n);
+
+    // Aloca memória para armazenar os valores
+    int *valores = (int *)malloc(n * sizeof(int));
+
+    // Verifica se a alocação foi bem-sucedida
+    if (valores == NULL) {
+        printf("Erro: Falha na alocação de memória.\n");
+        return 1;
+    }
+
+    // Lê os valores do usuário
+    printf("Digite %d valores inteiros:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &valores[i]);
+    }
+
+    // Escolhe a função de comparação com base na escolha do usuário
+    int opcao;
+    printf("Escolha a opção de ordenação:\n");
+    printf("1. Crescente\n");
+    printf("2. Decrescente\n");
+    scanf("%d", &opcao);
+
+    CompararFunc comparar;
+    switch (opcao) {
+        case 1:
+            comparar = comparar_crescente;
+            break;
+        case 2:
+            comparar = comparar_decrescente;
+            break;
+        default:
+            printf("Opção inválida.\n");
+            free(valores);
+            return 1;
+    }
+
+    // Chama a função de ordenação personalizada
+    ordenar(valores, n, comparar);
+
+    // Apresenta os valores ordenados
+    printf("Valores ordenados:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", valores[i]);
+    }
+    printf("\n");
+
+    // Libera a memória alocada
+    free(valores);
+
+    return 0;
+}
 ---------------------------
 QUESTÃO 18:
 
@@ -373,6 +452,7 @@ int main() {
 }
 ---------------------------
 QUESTÃO 20:
+--- NO PROGRAMA A SEGUIR É REALIZADO UMA MULTIPLICAÇÃO DE MATRIZES, ENTRE UMA MATRIZ 2X3 E UMA 3X4, RETORNANDO UMA MATRIZ 3X3. 
 #include <stdio.h>
 #include <stdlib.h>
 
