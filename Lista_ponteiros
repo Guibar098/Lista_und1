@@ -373,7 +373,70 @@ int main() {
 }
 ---------------------------
 QUESTÃO 20:
+#include <stdio.h>
+#include <stdlib.h>
 
+// Função para multiplicação matricial C = A x B
+void multiplicar_matrizes(float *A, float *B, float *C, int linhas_A, int colunas_A, int colunas_B) {
+    for (int i = 0; i < linhas_A; i++) {
+        for (int j = 0; j < colunas_B; j++) {
+            C[i * colunas_B + j] = 0; // Inicializa o elemento (i,j) de C
+
+            for (int k = 0; k < colunas_A; k++) {
+                C[i * colunas_B + j] += A[i * colunas_A + k] * B[k * colunas_B + j];
+            }
+        }
+    }
+}
+
+// Função para imprimir uma matriz
+void imprimir_matriz(float *matriz, int linhas, int colunas) {
+    for (int i = 0; i < linhas; i++) {
+        for (int j = 0; j < colunas; j++) {
+            printf("%.2f\t", matriz[i * colunas + j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+int main() {
+    int linhas_A = 2, colunas_A = 3;
+    int linhas_B = 3, colunas_B = 4;
+
+    // Aloca memória para as matrizes A, B e C
+    float *A = (float *)malloc(linhas_A * colunas_A * sizeof(float));
+    float *B = (float *)malloc(linhas_B * colunas_B * sizeof(float));
+    float *C = (float *)malloc(linhas_A * colunas_B * sizeof(float));
+
+    // Preenche as matrizes A e B (para fins de teste)
+    for (int i = 0; i < linhas_A * colunas_A; i++) {
+        A[i] = i + 1; // Exemplo simples de preenchimento
+    }
+    for (int i = 0; i < linhas_B * colunas_B; i++) {
+        B[i] = (i + 1) * 2; // Exemplo simples de preenchimento
+    }
+
+    // Realiza a multiplicação matricial
+    multiplicar_matrizes(A, B, C, linhas_A, colunas_A, colunas_B);
+
+    // Imprime as matrizes para visualização
+    printf("Matriz A (%dx%d):\n", linhas_A, colunas_A);
+    imprimir_matriz(A, linhas_A, colunas_A);
+
+    printf("Matriz B (%dx%d):\n", linhas_B, colunas_B);
+    imprimir_matriz(B, linhas_B, colunas_B);
+
+    printf("Matriz resultante C (%dx%d):\n", linhas_A, colunas_B);
+    imprimir_matriz(C, linhas_A, colunas_B);
+
+    // Libera a memória alocada
+    free(A);
+    free(B);
+    free(C);
+
+    return 0;
+}
 ---------------------------
 QUESTÃO 21:
   NO TRECHO DE CÓDIGO DA ALTERNATIVA C, OCORRE A ALOCAÇÃO DE 50 BYTES E CASO O NÚMERO DE LINHAS DO ARRAY DATA FOR MAIOR QUE A QUANTIDADE ARMAZENADA O PROGRAMA RETORNA -1 E VOLTA PARA A FUNÇÃO PRINCIPAL SEM DESALOCAR OS 50 BYTES.
